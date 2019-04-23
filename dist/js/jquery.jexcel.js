@@ -2062,19 +2062,17 @@ var methods = {
      * @return void
      */
     loadCells : function(cells, force) {
+        
         // Update values
-        var ignoreEvents = $.fn.jexcel.ignoreEvents ? true : false;
         var ignoreHistory = $.fn.jexcel.ignoreHistory ? true : false;
 
-        // Disabled events and history
-        $.fn.jexcel.ignoreEvents = true;
+        // Disabled history
         $.fn.jexcel.ignoreHistory = true;
 
         // Update all records
         $(this).jexcel('updateCells', cells, force);
 
-        // Restore events and history flag
-        $.fn.jexcel.ignoreEvents = ignoreEvents;
+        // Restore history flag
         $.fn.jexcel.ignoreHistory = ignoreHistory;
     },
 
@@ -4106,11 +4104,9 @@ var methods = {
     undo : function () {
         var id = $(this).prop('id');
 
-        // Ignore events and history
-        var ignoreEvents = $.fn.jexcel.ignoreEvents ? true : false;
+        // Ignore history
         var ignoreHistory = $.fn.jexcel.ignoreHistory ? true : false;
 
-        $.fn.jexcel.ignoreEvents = true;
         $.fn.jexcel.ignoreHistory = true;
 
         // Records
@@ -4200,7 +4196,6 @@ var methods = {
             }
         }
 
-        $.fn.jexcel.ignoreEvents = ignoreEvents;
         $.fn.jexcel.ignoreHistory = ignoreHistory;
 
         $(this).jexcel('updateAllCellsWithFormulas');
@@ -4213,10 +4208,8 @@ var methods = {
     redo : function () {
         var id = $(this).prop('id');
 
-        var ignoreEvents = $.fn.jexcel.ignoreEvents ? true : false;
         var ignoreHistory = $.fn.jexcel.ignoreHistory ? true : false;
 
-        $.fn.jexcel.ignoreEvents = true;
         $.fn.jexcel.ignoreHistory = true;
 
         if ($.fn.jexcel.defaults[id].historyIndex < $.fn.jexcel.defaults[id].history.length - 1) {
@@ -4269,7 +4262,6 @@ var methods = {
             }
         }
 
-        $.fn.jexcel.ignoreEvents = ignoreEvents;
         $.fn.jexcel.ignoreHistory = ignoreHistory;
 
         $(this).jexcel('updateAllCellsWithFormulas');
