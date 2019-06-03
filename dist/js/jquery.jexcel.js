@@ -2143,8 +2143,15 @@ var methods = {
         var position = [v.col, v.row];
 
         // Value
-        // some light html parsing from input
-        value = '' + v.newValue.replace(/<[^>]*>?/gm, '');
+        value = '' + v.newValue;
+
+
+        // some light html parsing from input so we don't attempt to not run scripts
+        // still sanitize inputs if sending to server
+        if (!!value) {
+             value = value.replace(/<[^>]*>?/gm, '');
+        }
+
 
         // Changing value depending on the column type
         if ($(v.cell).hasClass('readonly') == true && force == false) {
